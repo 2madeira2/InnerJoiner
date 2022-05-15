@@ -38,7 +38,8 @@ public class InnerJoiner {
                     fileWriter.write(firstPair.getId() + " " + firstPair.getValue() + " " + secondPair.getValue() + "\n");
                 }
             }
-            secondIterator = linkedListTwo.listIterator();
+            for(int i = 0; i < linkedListTwo.size(); i++)
+                secondIterator.previous();
         }
     }
 
