@@ -11,7 +11,7 @@ public class InnerJoiner {
 
     private final FileWriter fileWriter;
 
-    public InnerJoiner(FileWriter fileWriter) throws IOException {
+    public InnerJoiner(FileWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
 
