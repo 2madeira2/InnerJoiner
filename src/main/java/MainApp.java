@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class MainApp {
     public static void main(String[] args) {
-        if(checkCommandLineArguments(args.length)) {
+        if (checkCommandLineArguments(args.length)) {
             try (FileWriter fileWriter = new FileWriter(args[2]);) {
                 ReaderFile readerFile = new ReaderFile();
                 ArrayList<Pair> pairsInA = readerFile.getPairsFromFile(args[0]);

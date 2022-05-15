@@ -17,7 +17,7 @@ public class StructureConverter {
 
     public HashMap<Integer, ArrayList<Pair>> convertToHashMap(ArrayList<Pair> arrayList) {
         HashMap<Integer, ArrayList<Pair>> map = new HashMap<>();
-        for(Pair p : arrayList) {
+        for (Pair p : arrayList) {
             map.putIfAbsent(p.getId(), new ArrayList<>());
             map.get(p.getId()).add(p);
         }

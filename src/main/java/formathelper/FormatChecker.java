@@ -8,7 +8,7 @@ public class FormatChecker {
             System.out.println("!Не хватает значений в строке номер: " + lineNumber);
             return false;
         }
-        if(line[1].isBlank()) {
+        if (line[1].isBlank()) {
             System.out.println("!Неверное строковое значение в строке номер: " + lineNumber);
             check = false;
         }
