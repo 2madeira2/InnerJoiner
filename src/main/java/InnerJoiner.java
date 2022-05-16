@@ -1,3 +1,4 @@
+import ioutils.WriterFile;
 import model.Pair;
 
 import java.io.FileWriter;
@@ -9,35 +10,34 @@ import java.util.ListIterator;
 
 public class InnerJoiner {
 
-    private final FileWriter fileWriter;
+    private final WriterFile writerFile;
 
     public InnerJoiner(FileWriter fileWriter) {
-        this.fileWriter = fileWriter;
+        this.writerFile = new WriterFile(fileWriter);
     }
 
     public void join(ArrayList<Pair> arrayListOne, ArrayList<Pair> arrayListTwo) throws IOException {
-        printHeaders();
+        writerFile.printHeaders();
         for (Pair pairOne : arrayListOne) {
             for (Pair pairTwo : arrayListTwo) {
                 if (pairOne.getId().equals(pairTwo.getId())) {
-                    fileWriter.write(pairOne.getId() + "\t" + pairOne.getValue() + "\t\t" + pairTwo.getValue() + "\n");
+                    writerFile.printResultLine(pairOne, pairTwo);
                 }
             }
         }
     }
 
     public void join(LinkedList<Pair> linkedListOne, LinkedList<Pair> linkedListTwo) throws IOException {
-        printHeaders();
+        writerFile.printHeaders();
         ListIterator<Pair> firstIterator = linkedListOne.listIterator();
         ListIterator<Pair> secondIterator = linkedListTwo.listIterator();
-        Pair firstPair;
-        Pair secondPair;
+        Pair firstPair, secondPair;
         while (firstIterator.hasNext()) {
             firstPair = firstIterator.next();
             while (secondIterator.hasNext()) {
                 secondPair = secondIterator.next();
                 if (firstPair.getId().equals(secondPair.getId())) {
-                    fileWriter.write(firstPair.getId() + "\t" + firstPair.getValue() + "\t\t" + secondPair.getValue() + "\n");
+                    writerFile.printResultLine(firstPair, secondPair);
                 }
             }
             for (int i = 0; i < linkedListTwo.size(); i++)
@@ -46,17 +46,13 @@ public class InnerJoiner {
     }
 
     public void join(HashMap<Integer, ArrayList<Pair>> hashMapOne, HashMap<Integer, ArrayList<Pair>> hashMapTwo) throws IOException {
-        printHeaders();
+        writerFile.printHeaders();
         for (Integer key : hashMapOne.keySet()) {
             if (hashMapTwo.containsKey(key)) {
                 for (Pair p1 : hashMapOne.get(key))
                     for (Pair p2 : hashMapTwo.get(key))
-                        fileWriter.write(p1.getId() + "\t" + p1.getValue() + "\t\t" + p2.getValue() + "\n");
+                        writerFile.printResultLine(p1, p2);
             }
         }
-    }
-
-    private void printHeaders() throws IOException {
-        fileWriter.write("ID\tA.VALUE\tB.VALUE\n");
     }
 }

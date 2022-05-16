@@ -23,5 +23,4 @@ public class StructureConverter {
         }
         return map;
     }
-
 }

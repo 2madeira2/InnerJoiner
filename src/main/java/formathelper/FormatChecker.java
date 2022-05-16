@@ -22,5 +22,4 @@ public class FormatChecker {
         }
         return check;
     }
-
 }
