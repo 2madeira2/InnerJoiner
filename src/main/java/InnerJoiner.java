@@ -49,18 +49,14 @@ public class InnerJoiner {
         printHeaders();
         for (Integer key : hashMapOne.keySet()) {
             if (hashMapTwo.containsKey(key)) {
-                for (Pair p1 : hashMapOne.get(key)) {
-                    for (Pair p2 : hashMapTwo.get(key)) {
-                        if (p1.getId().equals(p2.getId())) {
-                            fileWriter.write(p1.getId() + "\t" + p1.getValue() + "\t\t" + p2.getValue() + "\n");
-                        }
-                    }
-                }
+                for (Pair p1 : hashMapOne.get(key))
+                    for (Pair p2 : hashMapTwo.get(key))
+                        fileWriter.write(p1.getId() + "\t" + p1.getValue() + "\t\t" + p2.getValue() + "\n");
             }
         }
     }
 
-    private void printHeaders() throws IOException{
+    private void printHeaders() throws IOException {
         fileWriter.write("ID\tA.VALUE\tB.VALUE\n");
     }
 }
