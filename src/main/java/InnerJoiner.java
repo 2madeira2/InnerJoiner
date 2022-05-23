@@ -32,15 +32,20 @@ public class InnerJoiner {
         ListIterator<Pair> firstIterator = linkedListOne.listIterator();
         ListIterator<Pair> secondIterator = linkedListTwo.listIterator();
         Pair firstPair, secondPair;
+        int counter;
         while (firstIterator.hasNext()) {
             firstPair = firstIterator.next();
+            counter = 0;
             while (secondIterator.hasNext()) {
+                counter++;
                 secondPair = secondIterator.next();
-                if (firstPair.getId().equals(secondPair.getId())) {
-                    writerFile.printResultLine(firstPair, secondPair);
-                }
+                if (firstPair.getId() >= secondPair.getId()) {
+                    if (firstPair.getId().equals(secondPair.getId())) {
+                        writerFile.printResultLine(firstPair, secondPair);
+                    }
+                } else break;
             }
-            for (int i = 0; i < linkedListTwo.size(); i++)
+            for (int i = 0; i < counter; i++)
                 secondIterator.previous();
         }
     }
