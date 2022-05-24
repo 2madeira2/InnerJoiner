@@ -2,8 +2,8 @@ package model;
 
 public class Pair implements Comparable<Pair> {
 
-    private Integer id;
-    private String value;
+    private final Integer id;
+    private final String value;
 
     public Pair(Integer id, String value) {
         this.id = id;

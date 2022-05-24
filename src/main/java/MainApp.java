@@ -1,29 +1,19 @@
-import converter.StructureConverter;
 import ioutils.ReaderFile;
+import joiner.ProxyJoiner;
 import model.Pair;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 public class MainApp {
     public static void main(String[] args) {
         if (checkCommandLineArguments(args.length)) {
-            try (FileWriter fileWriter = new FileWriter(args[2])) {
+            try {
                 ReaderFile readerFile = new ReaderFile();
                 ArrayList<Pair> pairsInA = readerFile.getPairsFromFile(args[0]);
                 ArrayList<Pair> pairsInB = readerFile.getPairsFromFile(args[1]);
-                StructureConverter structureConverter = new StructureConverter();
-                InnerJoiner innerJoiner = new InnerJoiner(fileWriter);
-                innerJoiner.join(pairsInA, pairsInB);
-                LinkedList<Pair> firstLinkedList = structureConverter.convertToSortedLinkedList(pairsInA);
-                LinkedList<Pair> secondLinkedList = structureConverter.convertToSortedLinkedList(pairsInB);
-                innerJoiner.join(firstLinkedList, secondLinkedList);
-                HashMap<Integer, ArrayList<Pair>> hashMapOne = structureConverter.convertToHashMap(pairsInA);
-                HashMap<Integer, ArrayList<Pair>> hashMapTwo = structureConverter.convertToHashMap(pairsInB);
-                innerJoiner.join(hashMapOne, hashMapTwo);
+                ProxyJoiner joiner = new ProxyJoiner(args[2]);
+                joiner.join(pairsInA, pairsInB);
             } catch (IOException ex) {
                 System.out.println("Неверно задан путь к файлу");
             }
