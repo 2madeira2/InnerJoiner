@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ArrayListJoiner implements Joiner {
+public class ArrayListJoiner implements Joiner<ArrayList<Pair>> {
     private final String inputPath;
 
     public ArrayListJoiner(String inputPath) {
