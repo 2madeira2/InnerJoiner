@@ -21,20 +21,20 @@ public class ProxyJoiner implements Joiner {
         if (arrayListJoiner == null) {
             arrayListJoiner = new ArrayListJoiner(inputPath);
         }
-        long now = System.currentTimeMillis();
-        arrayListJoiner.join(listOne, listTwo);
-        System.out.println(System.currentTimeMillis() - now);
+        doJoin(arrayListJoiner, listOne, listTwo);
         if (linkedListJoiner == null) {
             linkedListJoiner = new LinkedListJoiner(inputPath + "LinkedList");
         }
-        now = System.currentTimeMillis();
-        linkedListJoiner.join(listOne, listTwo);
-        System.out.println(System.currentTimeMillis() - now);
+        doJoin(linkedListJoiner, listOne, listTwo);
         if (hashMapJoiner == null) {
             hashMapJoiner = new HashMapJoiner(inputPath + "HashMap");
         }
-        now = System.currentTimeMillis();
-        hashMapJoiner.join(listOne, listTwo);
-        System.out.println(System.currentTimeMillis() - now);
+        doJoin(hashMapJoiner, listOne, listTwo);
+    }
+
+    private void doJoin(Joiner joiner, ArrayList<Pair> listOne, ArrayList<Pair> listTwo) throws IOException {
+        long now = System.currentTimeMillis();
+        joiner.join(listOne, listTwo);
+        System.out.println((System.currentTimeMillis() - now) / 1000);
     }
 }
